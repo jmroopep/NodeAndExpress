@@ -11,14 +11,14 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 const sessionRouter = require("./src/routers/sessionRouter.js");
 const adminRouter = require("./src/routers/adminRouter.js");
-//const authRouter = require("./src/routers/authRouter.js");
+const authRouter = require("./src/routers/authRouter.js");
 
 //middleware
 app.use(morgan("tiny")); //'combined' for lots
 app.use(express.static(path.join(__dirname, "/public/"))); //this was to show static page, comment out now so it can make it to get
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(cookieParser);
+app.use(cookieParser);
 //app.use(session({ secret: "globomantics" }));
 
 //after use for cookieParser and session, now you can configure passport, do this in
