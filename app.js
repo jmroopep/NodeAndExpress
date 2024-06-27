@@ -13,17 +13,17 @@ const sessionRouter = require("./src/routers/sessionRouter");
 const adminRouter = require("./src/routers/adminRouter");
 const authRouter = require("./src/routers/authRouter");
 
-//middleware
+//middleware - call the packages inside like a FUNCTION with ()!!!
 app.use(morgan("tiny")); //'combined' for lots
 app.use(express.static(path.join(__dirname, "/public/"))); //this was to show static page, comment out now so it can make it to get
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(cookieParser);
-//app.use(session({ secret: "globomantics" }));
+app.use(cookieParser());
+app.use(session({ secret: "globomantics" }));
 
 //after use for cookieParser and session, now you can configure passport, do this in
 //separate module, make the module return a function that takes app because it needs app for the config
-//require("./src/config/passport.js")(app);
+require("./src/config/passport.js")(app);
 
 //set variables in the context of the application
 app.set("views", "./src/views");
