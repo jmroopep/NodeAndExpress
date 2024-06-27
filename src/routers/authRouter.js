@@ -4,11 +4,12 @@ const { MongoClient, ObjectId } = require("mongodb");
 
 const authRouter = express.Router();
 
-authRouter.route("/signup").post((req, res) => {
+authRouter.route("/signUp").post((req, res) => {
   //TODO create user
-  req.login(req.body, () => {
-    res.redirect("/auth/profile");
-  });
+  //   req.login(req.body, () => {
+  //     res.redirect("/auth/profile");
+  //   });
+  res.json(req.body);
 });
 authRouter.route("/profile").get((req, res) => {
   res.json(req.user);
